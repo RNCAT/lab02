@@ -1,6 +1,13 @@
 <template>
   <div id="app">
+    {{ counter }}<br>
+    <button @click="counter+=1">plus 1</button><br>
+    <button @click="clicked">plus 2</button>
+
+    <h1>{{ message }}</h1>
     <span v-text="message"></span>
+    <br>
+    <input type="text" v-model="message">
     <hr>
     <h2 v-show="isShow">Hello</h2>
     <hr>
@@ -12,8 +19,17 @@
       <span v-else-if="emp.salary >= 30000">**</span>
       <span v-else>*</span>
     </h2><br>
+    
     <a :href="urlSKRU">SKRU</a><br><br>
-    <img :src="require('@/assets/img/'+ imagesName + '.jpg')" alt="cat" width="100px" height="100px">
+    <img :src="require('@/assets/img/'+ imagesName + '.jpg')" alt="cat" width="100px" height="100px"><br><br>
+    
+    <select v-model="message">
+      <option value="Coffee">Coffee</option>
+      <option value="GreenTea">GreenTea</option>
+      <option value="Milk">Milk</option>
+    </select><br><br>
+    
+    <textarea v-model="message" cols="30" rows="3"></textarea>
   </div>
 </template>
 
@@ -25,6 +41,7 @@ export default {
   },
   data(){
     return {
+      counter: 0,
       imagesName: "cat", 
       urlSKRU: "https://www.skru.ac.th",
       message: "Hello World",
@@ -34,6 +51,11 @@ export default {
         {"id":2, "name":"Dog", "salary":30000},
         {"id":3, "name":"Fish", "salary":10000},
       ],
+    }
+  },
+  methods:{
+    clicked: function(){
+      this.counter+=2
     }
   },
 }
